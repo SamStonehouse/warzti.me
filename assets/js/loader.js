@@ -10,7 +10,7 @@ $('document').ready(function() {
 	//Check for web worker support
 	if(typeof(Worker)!=="undefined") {
 		//Web workers supported
-		var timeWorker = new Worker('/assets/js/time.js');
+		var timeWorker = new Worker('assets/js/time.js');
 
 		var update = init();
 
@@ -31,10 +31,10 @@ function init() {
 	var DARK_TIME_HOURS = 21;
 	var DARK_TIME_MINUTES = 30;
 
-	var lightMessage = "It's currently light";
-	var darkMessage = "It's currently dark";
+	var lightMessage = "NIGHT in";
+	var darkMessage = "DAY in";
 
-	var lightCountdown = "Time until light (real time)";
+	var lightCountdown = " (real time)";
 	var darkCountdown = "Time until dark (real time)";
 
 	var LIGHT_ICON_FILE = "/assets/images/sun.ico";
@@ -69,19 +69,23 @@ function init() {
 			if (isNowLight) {
 				//Count down until dark
 				timeDiff = calcTimeDiff([hours, minutes, seconds], [DARK_TIME_HOURS, DARK_TIME_MINUTES, 0]);
+				$("body").removeClass("dark");
+                $('.sunrise-icon').attr('src','assets/images/sunrise-dark.png');
+                $('.moonrise-icon').attr('src','assets/images/moonrise-dark.png');
 			} else {
 				//Count down unti light
 				timeDiff = calcTimeDiff([hours, minutes, seconds], [LIGHT_TIME_HOURS, LIGHT_TIME_MINUTES, 0]);
+				$("body").addClass("dark");
+                $('.sunrise-icon').attr('src','assets/images/sunrise.png');
+                $('.moonrise-icon').attr('src','assets/images/moonrise.png');
 			}
 
-			console.log(timeDiff);
+			var extraMinutes = ((timeDiff[0]%12)/12)*60;
+			var extraSeconds = ((timeDiff[1]%12)/12)*60 + extraMinutes%1*60;
 
-			var extraMinutes = ((timeDiff[0]%6)/6)*60;
-			var extraSeconds = ((timeDiff[1]%6)/6)*60 + extraMinutes%1*60;
-
-			countdownTime[0] = Math.floor(timeDiff[0]/6);
-			countdownTime[1] = Math.floor(timeDiff[1]/6) + extraMinutes;
-			countdownTime[2] = Math.floor(timeDiff[2]/6) + extraSeconds;
+			countdownTime[0] = Math.floor(timeDiff[0]/12);
+			countdownTime[1] = Math.floor(timeDiff[1]/12) + extraMinutes;
+			countdownTime[2] = Math.floor(timeDiff[2]/12) + extraSeconds;
 
 
 			if (countdownTime[2] > 60) {
@@ -100,7 +104,7 @@ function init() {
 		}
 
 		//Reduce real time
-		if (++tick == 6) {
+		if (++tick == 12) {
 			tick = 0;
 
 			if (--countdownTime[2] == -1) {

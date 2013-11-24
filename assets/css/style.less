@@ -1,0 +1,120 @@
+html, body {
+	height: 100%;}
+
+body {
+	font: normal 112.5%/1.65 serif;
+	font-family: "Lato";
+	color: #222;
+	background: #fefefe;
+	min-height: 240px;
+	line-height: 1.2;
+
+	&.dark {
+		color: #fefefe;
+		background: #222;
+	}
+}
+
+h1, h2 {
+	font-family: "Jolly Lodger";
+	margin: 0;
+}
+
+h1 {
+	font-size: 164pt;
+	color: #7e2f2f;
+	font-weight: 100;
+}
+
+h2 {
+	font-size: 52pt;
+	font-weight: 400;
+	margin-bottom: 20pt;
+}
+
+#content {
+	padding-top: 100px;
+	text-align: center;
+}
+
+.time-unit {
+	width: 160px;
+	display: inline-block;
+}
+
+.row {
+	max-width: 1080px;
+	margin: auto;
+	.col-3 {
+		width: 33.3%;
+		float: left;
+		box-sizing: border-box;
+	}
+	.col-2 {
+		width: 50%;
+		float: left;
+		box-sizing: border-box;
+	}
+}
+
+#footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	padding: 10px;
+}
+
+.time {
+	font-size: 36px;
+	vertical-align: bottom;
+	font-weight: 300;
+}
+
+.time-container {
+	padding: 20px 40px;
+
+	* {
+		vertical-align: middle;	
+	}
+}
+
+@media screen and (max-width: 900px) {
+	h1 {
+		font-size: 112pt;
+		margin-bottom: 10pt;
+	}
+
+	h2 {
+		font-size: 36pt;
+	}
+
+	.time-unit {
+		width: 100px;
+	}
+
+	h3 {
+		font-size: 24px;
+	}
+}
+
+@media screen and (max-width: 540px) {
+	h1 {
+		font-size: 72pt;
+		margin-bottom: 6pt;
+	}
+	h2 {
+		font-size: 28pt;
+	}
+	h3 {
+		font-size: 18px;
+	}
+	.time-unit {
+		width: 60px;
+	}
+
+	.time-container {
+		padding: 20px 10px;
+	}
+}

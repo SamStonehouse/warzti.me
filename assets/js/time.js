@@ -5,13 +5,13 @@ function updateTime() {
 	var startMinutes = now.getUTCMinutes();
 	var startSeconds = now.getUTCSeconds();
 
-	var extraHours = Math.floor(startMinutes*6/60)+0;
-	var extraMinutes = Math.floor(startSeconds*6/60);
+	var extraHours = Math.floor(startMinutes*12/60)+0;
+	var extraMinutes = Math.floor(startSeconds*12/60);
 	var extraSeconds = 0;
 
-	var hours =   (startHours*6   + extraHours )%24;
-	var minutes = (startMinutes*6 + extraMinutes)%60;
-	var seconds = (startSeconds*6 + extraSeconds)%60;
+	var hours =   (startHours*12   + extraHours )%24;
+	var minutes = (startMinutes*12 + extraMinutes)%60;
+	var seconds = (startSeconds*12 + extraSeconds)%60;
 
 	if (seconds < 0) {
 		minutes--;
@@ -49,6 +49,6 @@ function updateTime() {
 
 var updater = updateTime();
 
-setInterval(updater, 166.667);
+setInterval(updater, 83.333);
 
 
